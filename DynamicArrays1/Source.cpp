@@ -159,27 +159,3 @@ int* erase(int arr[], int& n)
 	n--;
 	return arr;
 }
-
-//Добавление по индексу
-int* insert(int arr[], int& n)
-{
-	int* buffer = new int[n + 1]{};
-	int value;
-	int index;
-	int h = 0;
-	cout << "Введите добавляемое значение: "; cin >> value;
-	cout << "Введите индекс значения: "; cin >> index;
-	for (int i = 0; i < n; i++, h++)
-	{
-		if (i == index - 1)
-		{
-			buffer[h] = value;
-			h++;
-		}
-		buffer[h] = arr[i];
-	}
-	delete[] arr;
-	arr = buffer;
-	n++;
-	return arr;
-}
