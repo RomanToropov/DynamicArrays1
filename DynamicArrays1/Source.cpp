@@ -94,6 +94,21 @@ int* push_back(int arr[], int& n)
 	return arr;
 }
 
+//В конце
+int* push_front(int arr[], int& n)
+{
+	int* buffer = new int[n + 1]{};
+	for (int i = 0; i < n; i++)
+	{
+		buffer[i + 1] = arr[i];
+	}
+	buffer = arr;
+	delete[] arr;
+	arr = buffer;
+	n++;
+	return arr;
+}
+
 //удаление с конца
 int* pop_back(int arr[], int& n)
 {
