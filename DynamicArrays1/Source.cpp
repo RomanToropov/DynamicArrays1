@@ -54,17 +54,6 @@ void main()
 	Print(arr, n);
 	delete[] arr;
 
-	//arr = push_back(arr, n);
-	
-	//arr = push_front(arr, n);
-	
-	//arr = insert(arr, n);
-	
-	//arr = pop_back(arr, n);
-
-	//arr = pop_front(arr, n);
-	
-	//arr = erase(arr, n);
 }
 
 
@@ -99,23 +88,6 @@ int* push_back(int arr[], int& n)
 	}
 	cout << "Введите добавляемое значение в начале: "; cin >> value;
 	buffer[n] = value;
-	delete[] arr;
-	arr = buffer;
-	n++;
-	return arr;
-}
-
-//В конце
-int* push_front(int arr[], int& n)
-{
-	int* buffer = new int[n + 1]{};
-	int value;
-	for (int i = 0; i < n; i++)
-	{
-		buffer[i + 1] = arr[i];
-	}
-	cout << "Введите добавляемое значение в конце: "; cin >> value;
-	buffer[0] = value;
 	delete[] arr;
 	arr = buffer;
 	n++;
