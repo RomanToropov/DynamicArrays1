@@ -2,12 +2,17 @@
 using namespace std;
 
 void FillRand(int arr[], const int n);
+
 void Print(int arr[], const int n);
+
 int* push_back(int arr[], int& n);
 int* push_front(int arr[], int& n);
+
 int* insert(int arr[], int& n);
+
 int* pop_back(int arr[], int& n);
 int* pop_front(int arr[], int& n);
+
 int* erase(int arr[], int& n);
 
 void main()
@@ -20,9 +25,10 @@ void main()
 
 	//обращаться к элементам массива можно
 	FillRand(arr, n);
+
 	Print(arr, n);
 
-
+	
 
 	//TODO:
 	//добавить значение в конец массива.
@@ -47,7 +53,20 @@ void main()
 	n++;
 	Print(arr, n);
 	delete[] arr;
+
+	//arr = push_back(arr, n);
+	
+	//arr = push_front(arr, n);
+	
+	//arr = insert(arr, n);
+	
+	//arr = pop_back(arr, n);
+
+	//arr = pop_front(arr, n);
+	
+	//arr = erase(arr, n);
 }
+
 
 void FillRand(int arr[], const int n)
 {
@@ -57,6 +76,7 @@ void FillRand(int arr[], const int n)
 		*(arr + i) = rand() % 100;
 	}
 }
+
 
 void Print(int arr[], const int n)
 {
@@ -68,6 +88,7 @@ void Print(int arr[], const int n)
 	cout << endl;
 }
 
+//В начале
 int* push_back(int arr[], int& n)
 {
 	int* buffer = new int[n + 1]{};
@@ -84,6 +105,7 @@ int* push_back(int arr[], int& n)
 	return arr;
 }
 
+//В конце
 int* push_front(int arr[], int& n)
 {
 	int* buffer = new int[n + 1]{};
@@ -100,6 +122,58 @@ int* push_front(int arr[], int& n)
 	return arr;
 }
 
+//удаление с конца
+int* pop_back(int arr[], int& n)
+{
+	int* buffer = new int[n - 1]{};
+	for (int i = 0; i < n - 1; i++)
+	{
+		buffer[i] = arr[i];
+	}
+	cout << "Удаление последнего элемента: " << endl;
+	delete[] arr;
+	arr = buffer;
+	n--;
+	return arr;
+}
+
+// Удаление нулевого
+int* pop_front(int arr[], int& n)
+{
+	int* buffer = new int[n - 1]{};
+	for (int i = 1; i < n; i++)
+	{
+		buffer[i - 1] = arr[i];
+	}
+	cout << "Удаление нулевого элемента: " << endl;
+	delete[] arr;
+	arr = buffer;
+	n--;
+	return arr;
+}
+
+//Удаление по индексу
+int* erase(int arr[], int& n)
+{
+	int* buffer = new int[n - 1]{};
+	int index;
+	int h = 0;
+	cout << "Введите индекс удаляемого значения : "; cin >> index;
+	for (int i = 0; i < n; i++, h++)
+	{
+		if (i == index - 1)
+		{
+			i++;
+		}
+		buffer[h] = arr[i];
+	}
+	delete[] arr;
+	arr = buffer;
+	n--;
+	return arr;
+}
+
+//Добавление по индексу
 int* insert(int arr[], int& n)
 {
 	int* buffer = new int[n + 1]{};
@@ -120,53 +194,5 @@ int* insert(int arr[], int& n)
 	delete[] arr;
 	arr = buffer;
 	n++;
-	return arr;
-}
-
-int* pop_back(int arr[], int& n)
-{
-	int* buffer = new int[n - 1]{};
-	for (int i = 0; i < n - 1; i++)
-	{
-		buffer[i] = arr[i];
-	}
-	cout << "Удаление последнего элемента: " << endl;
-	delete[] arr;
-	arr = buffer;
-	n--;
-	return arr;
-}
-
-int* pop_front(int arr[], int& n)
-{
-	int* buffer = new int[n - 1]{};
-	for (int i = 1; i < n; i++)
-	{
-		buffer[i - 1] = arr[i];
-	}
-	cout << "Удаление нулевого элемента: " << endl;
-	delete[] arr;
-	arr = buffer;
-	n--;
-	return arr;
-}
-
-int* erase(int arr[], int& n)
-{
-	int* buffer = new int[n - 1]{};
-	int index;
-	int h = 0;
-	cout << "Введите индекс удаляемого значения : "; cin >> index;
-	for (int i = 0; i < n; i++, h++)
-	{
-		if (i == index - 1)
-		{
-			i++;
-		}
-		buffer[h] = arr[i];
-	}
-	delete[] arr;
-	arr = buffer;
-	n--;
 	return arr;
 }
