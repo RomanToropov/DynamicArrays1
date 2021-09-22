@@ -76,7 +76,7 @@ int* push_back(int arr[], int& n)
 	{
 		buffer[i] = arr[i];
 	}
-	cout << "¬ведите добавл€емое значение в начало: "; cin >> value;
+	cout << "¬ведите добавл€емое значение в начале: "; cin >> value;
 	buffer[n] = value;
 	delete[] arr;
 	arr = buffer;
@@ -92,7 +92,7 @@ int* push_front(int arr[], int& n)
 	{
 		buffer[i + 1] = arr[i];
 	}
-	cout << "¬ведите добавл€емое значение в конец: "; cin >> value;
+	cout << "¬ведите добавл€емое значение в конце: "; cin >> value;
 	buffer[0] = value;
 	delete[] arr;
 	arr = buffer;
@@ -107,7 +107,7 @@ int* insert(int arr[], int& n)
 	int index;
 	int h = 0;
 	cout << "¬ведите добавл€емое значение: "; cin >> value;
-	cout << "¬ведите индекс: "; cin >> index;
+	cout << "¬ведите индекс значени€: "; cin >> index;
 	for (int i = 0; i < n; i++, h++)
 	{
 		if (i == index - 1)
