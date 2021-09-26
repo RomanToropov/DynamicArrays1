@@ -2,23 +2,19 @@
 using namespace std;
 
 void FillRand(int arr[], const int n);
-
+void FillRand(int** arr, const int rows, const int cols);
 void Print(int arr[], const int n);
+void Print(int** arr, const int rows, const int cols);
 
-int* push_back(int arr[], int& n);
-int* push_front(int arr[], int& n);
 
-int* insert(int arr[], int& n);
-
-int* pop_back(int arr[], int& n);
-int* pop_front(int arr[], int& n);
-
-int* erase(int arr[], int& n);
+//#define DYNAMIC_MEMORY_1
+#define DYNAMIC_MEMORY_2
 
 void main()
 {
-	cout << int() << endl;
 	setlocale(LC_ALL, "ru");
+#ifdef DYNAMIC_MEMORY_1
+	cout << int() << endl;
 	int n;//размер массива.
 	cout << "Введите размер массива: "; cin >> n;
 	int* arr = new int[n] {};
@@ -28,7 +24,7 @@ void main()
 
 	Print(arr, n);
 
-	
+
 
 	//TODO:
 	//добавить значение в конец массива.
@@ -54,8 +50,27 @@ void main()
 	Print(arr, n);
 	delete[] arr;
 
-}
+#endif // DYNAMIC_MEMORY_1
 
+	int rows; //количество строк
+	int cols; //количество элементов строки
+	cout << "Введите количество строк: "; cin >> rows;
+	cout << "Введите количество элементов строки: "; cin >> cols;
+	int** arr = new int* [rows] {};
+	for (int i = 0; i < rows; i++)
+	{
+		arr[i] = new int [cols] {};
+	}
+
+	FillRand(arr, rows, cols);
+	Print(arr, rows, cols);
+
+	for (int i = 0; i < rows; i++)
+	{
+		delete[] arr[i];
+	}
+	delete[] arr;
+}
 
 void FillRand(int arr[], const int n)
 {
@@ -65,7 +80,16 @@ void FillRand(int arr[], const int n)
 		*(arr + i) = rand() % 100;
 	}
 }
-
+void FillRand(int** arr, const int rows, const int cols)
+{
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			arr[i][j] = rand() % 100;
+		}
+	}
+}
 
 void Print(int arr[], const int n)
 {
@@ -77,85 +101,14 @@ void Print(int arr[], const int n)
 	cout << endl;
 }
 
-//В начале
-int* push_back(int arr[], int& n)
+void Print(int** arr, const int rows, const int cols)
 {
-	int* buffer = new int[n + 1]{};
-	int value;
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < rows; i++)
 	{
-		buffer[i] = arr[i];
-	}
-	cout << "Введите добавляемое значение в начале: "; cin >> value;
-	buffer[n] = value;
-	delete[] arr;
-	arr = buffer;
-	n++;
-	return arr;
-}
-
-//В конце
-int* push_front(int arr[], int& n)
-{
-	int* buffer = new int[n + 1]{};
-	for (int i = 0; i < n; i++)
-	{
-		buffer[i + 1] = arr[i];
-	}
-	buffer = arr;
-	delete[] arr;
-	arr = buffer;
-	n++;
-	return arr;
-}
-
-//удаление с конца
-int* pop_back(int arr[], int& n)
-{
-	int* buffer = new int[n - 1]{};
-	for (int i = 0; i < n - 1; i++)
-	{
-		buffer[i] = arr[i];
-	}
-	cout << "Удаление последнего элемента: " << endl;
-	delete[] arr;
-	arr = buffer;
-	n--;
-	return arr;
-}
-
-// Удаление нулевого
-int* pop_front(int arr[], int& n)
-{
-	int* buffer = new int[n - 1]{};
-	for (int i = 1; i < n; i++)
-	{
-		buffer[i - 1] = arr[i];
-	}
-	cout << "Удаление нулевого элемента: " << endl;
-	delete[] arr;
-	arr = buffer;
-	n--;
-	return arr;
-}
-
-//Удаление по индексу
-int* erase(int arr[], int& n)
-{
-	int* buffer = new int[n - 1]{};
-	int index;
-	int h = 0;
-	cout << "Введите индекс удаляемого значения : "; cin >> index;
-	for (int i = 0; i < n; i++, h++)
-	{
-		if (i == index - 1)
+		for (int j = 0; j < cols; j++)
 		{
-			i++;
+			cout << arr[i][j] << "\t";
 		}
-		buffer[h] = arr[i];
+		cout << endl;
 	}
-	delete[] arr;
-	arr = buffer;
-	n--;
-	return arr;
 }
