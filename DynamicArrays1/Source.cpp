@@ -11,6 +11,9 @@ void Print(int** arr, const int rows, const int cols);
 int** Push_Row_Back(int** arr,int& rows, const int cols);
 int** Push_Row_Front(int** arr, int& rows, const int cols);
 int** Insert(int** arr, int& rows, const int cols, int position);	//Вставляет строку по заданному индексу
+int* Erase(int arr[], int& rows,int cols, int value, int position);
+
+int* Pop_Back(int arr[], int& rows);
 
 
 //#define DYNAMIC_MEMORY_1
@@ -83,6 +86,12 @@ void main()
 	cout << "Индекс добовляемой строки: "; cin >> position;
 	arr = Insert(arr, rows, cols, position);
 	Print(arr, rows, cols);
+
+	arr=Erase(arr, rows, cols, position);
+	Print(arr, rows, cols);
+
+	Pop_Back(arr, rows);
+	Print(arr, rows);
 
 	for (int i = 0; i < rows; i++)
 	{
@@ -172,4 +181,35 @@ int** Insert(int** arr, int& rows, const int cols, int position)
 	buffer[position] = new int[cols] {};
 	rows++;
 	return buffer;
+}
+
+int* Erase(int arr[], int& n, int value, int position)
+{
+	cout << "Удалим значение по указанному индексу: " << endl;
+	int* buffer = new int[n - 1]{};
+	for (int i = 0; i < position; i++)
+	{
+		buffer[i] = arr[i];
+	}
+
+	for (int i = position; i < n; i++)
+	{
+		buffer[i] = arr[i + 1];
+	}
+	delete[] arr;
+	arr = buffer;
+}
+
+int* Pop_Back(int arr[], int& n)
+{
+	cout << "Удалим последний элемент массива: " << endl;
+	int* buffer = new int[n - 1]{};
+	for (int i = 0; i < n - 1; i++)
+	{
+		buffer[i] = arr[i];
+	}
+	delete[] arr;
+	arr = buffer;
+	n--;
+	return arr;
 }
