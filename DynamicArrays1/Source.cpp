@@ -155,7 +155,6 @@ void main()
 	{
 		delete[] arr[i];
 	}
-	2) Удаляем массив указателей
 	delete[] arr;
 
 	Clear(arr, rows);
